@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ruler</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="dimensionsDefaultText">Touch to measure</string>
+
+
+    <string name="touch_at_mm">%1$.2f x %2$.2f mm</string>
+    <string name="touch_at_inch">%1$.2f x %2$.2f inches</string>
+</resources>
