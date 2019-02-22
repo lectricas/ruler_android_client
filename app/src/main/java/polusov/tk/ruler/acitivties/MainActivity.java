@@ -2,7 +2,6 @@ package polusov.tk.ruler.acitivties;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -11,6 +10,9 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import polusov.tk.ruler.MyApplication;
 import polusov.tk.ruler.R;
 import polusov.tk.ruler.utils.MyUtils;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         ((MyApplication) this.getApplication()).setPoint(getScreenResolution());
         setContentView(R.layout.activity_main);
         rulers = (Rulers)findViewById(R.id.rulers_view);
@@ -56,20 +59,4 @@ public class MainActivity extends AppCompatActivity {
         display.getSize(size);
         return size;
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

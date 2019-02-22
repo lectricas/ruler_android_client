@@ -1,37 +1,40 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "polusov.tk.ruler"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "0.1"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def formattedDate = new Date().format('_yyyy_MM_dd_HH_mm')
-                    def newName = output.outputFile.name
-                    newName = newName.replace("app-", "$rootProject.ext.appName-") //"MyAppName" -> I set my app variables in the root project
-                    newName = newName.replace("-release", "-release" + formattedDate)
-                    //noinspection GroovyAssignabilityCheck
-                    output.outputFile = new File(output.outputFile.parent, newName)
-                }
-            }
         }
         debug {
         }
     }
 }
 
+ext {
+    koin_version = '1.0.2'
+    room_version = '2.1.0-alpha03'
+    mockk_version = '1.9.kotlin12'
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
+        transitive = true;
+    }
 }
